@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>More Thumbnails • Lutfur</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Floating contact button -->
+<div aria-label="Contact options" class="fab" id="fab">
+<button aria-controls="fabMenu" aria-expanded="false" class="fab__main" type="button">
+<span class="fab__plus">💬</span>
+</button>
+<div aria-hidden="true" class="fab__menu" id="fabMenu">
+<a aria-label="WhatsApp" class="fab__item" href="https://wa.me//8801976229187" rel="noreferrer" target="_blank">WA</a>
+<a aria-label="Instagram" class="fab__item" href="https://instagram.com/lutfurcreates/" rel="noreferrer" target="_blank">IG</a>
+<a aria-label="Email" class="fab__item" href="mailto:lutfurrahmankhan64@gmail.com">@</a>
+</div>
+</div>
+<header class="header" id="top">
+  <div class="container header__inner">
+    <a class="brand" href="index.html#home" aria-label="Go to home">Lutfur</a>
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#thumbnails">Thumbnails</a>
+      <a href="index.html#longform">Long-form</a>
+      <a href="index.html#shortform">Short-form</a>
+      <a href="index.html#reviews">Reviews</a>
+      <a href="index.html#contact" class="btn btn--small">Contact</a>
+    </nav>
+    <button class="menuBtn" aria-label="Open menu" aria-controls="menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="section" style="padding-top:26px">
+    <div class="container">
+      <h1 class="center" style="margin:0 0 6px">More Thumbnail Designs</h1>
+      <p class="muted center" style="margin:0 auto 18px; max-width:720px">
+        Here are more thumbnail samples. Replace these images with your real work anytime.
+      </p>
+
+      <div class="grid thumbsGrid">
+        <!-- Replace the src with your real images inside /assets -->
+        <figure class="thumbCard"><img src="thumbnails/1.jpeg" alt="Thumbnail sample 13"></figure>
+        <figure class="thumbCard"><img src="thumbnails/2.jpeg" alt="Thumbnail sample 14"></figure>
+        <figure class="thumbCard"><img src="thumbnails/3.jpeg" alt="Thumbnail sample 15"></figure>
+        <figure class="thumbCard"><img src="thumbnails/4.jpeg" alt="Thumbnail sample 16"></figure>
+        <figure class="thumbCard"><img src="thumbnails/5.jpeg" alt="Thumbnail sample 17"></figure>
+        <figure class="thumbCard"><img src="thumbnails/24.jpeg" alt="Thumbnail sample 18"></figure>
+        <figure class="thumbCard"><img src="thumbnails/7.jpeg" alt="Thumbnail sample 19"></figure>
+        <figure class="thumbCard"><img src="thumbnails/8.jpeg" alt="Thumbnail sample 20"></figure>
+        <figure class="thumbCard"><img src="thumbnails/9.jpeg" alt="Thumbnail sample 21"></figure>
+        <figure class="thumbCard"><img src="thumbnails/10.jpeg" alt="Thumbnail sample 22"></figure>
+        <figure class="thumbCard"><img src="thumbnails/11.jpeg" alt="Thumbnail sample 13"></figure>
+        <figure class="thumbCard"><img src="thumbnails/12.jpeg" alt="Thumbnail sample 14"></figure>
+        <figure class="thumbCard"><img src="thumbnails/13.jpeg" alt="Thumbnail sample 15"></figure>
+        <figure class="thumbCard"><img src="thumbnails/14.jpeg" alt="Thumbnail sample 16"></figure>
+        <figure class="thumbCard"><img src="thumbnails/15.jpeg" alt="Thumbnail sample 17"></figure>
+        <figure class="thumbCard"><img src="thumbnails/16.jpeg" alt="Thumbnail sample 18"></figure>
+        <figure class="thumbCard"><img src="thumbnails/17.jpeg" alt="Thumbnail sample 19"></figure>
+        <figure class="thumbCard"><img src="thumbnails/18.jpeg" alt="Thumbnail sample 20"></figure>
+        <figure class="thumbCard"><img src="thumbnails/19.jpeg" alt="Thumbnail sample 21"></figure>
+        <figure class="thumbCard"><img src="thumbnails/20.jpeg" alt="Thumbnail sample 20"></figure>
+        <figure class="thumbCard"><img src="thumbnails/21.jpeg" alt="Thumbnail sample 21"></figure>
+  
+      </div>
+
+      
+      <!-- Lightbox -->
+      <div class="lightbox" id="lightbox" aria-hidden="true">
+        <button class="lightbox__close" type="button" aria-label="Close preview">✕</button>
+        <img class="lightbox__img" id="lightboxImg" alt="Thumbnail preview">
+      </div>
+<div class="center" style="margin-top:18px">
+        <a class="btn btn--ghost" href="index.html#thumbnails">Back to home</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="muted">© <span id="y"></span> LutfurCreates. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  // Set year (if script.js doesn't already)
+  (function(){
+    var el = document.getElementById('y');
+    if(el) el.textContent = new Date().getFullYear();
+  })();
+</script>
+
+<script>
+(function initLightbox(){
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lightboxImg');
+  if(!lb || !lbImg) return;
+
+  function open(src, alt){
+    lbImg.src = src;
+    lbImg.alt = alt || 'Thumbnail preview';
+    lb.classList.add('is-open');
+    lb.setAttribute('aria-hidden','false');
+    document.body.classList.add('noScroll');
+  }
+  function close(){
+    lb.classList.remove('is-open');
+    lb.setAttribute('aria-hidden','true');
+    lbImg.src = '';
+    document.body.classList.remove('noScroll');
+  }
+
+  document.querySelectorAll('.thumbCard img').forEach(function(img){
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', function(){
+      open(img.src, img.alt);
+    });
+  });
+
+  lb.addEventListener('click', function(e){
+    if(e.target === lb) close();
+  });
+  var closeBtn = lb.querySelector('.lightbox__close');
+  if(closeBtn) closeBtn.addEventListener('click', close);
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') close();
+  });
+})();
+</script>
+</body>
+</html>
