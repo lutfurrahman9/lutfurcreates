@@ -4,6 +4,27 @@
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 })();
 
+// Scroll reveal animations
+(() => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('reveal--visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+})();
+
+// Header scroll effect
+(() => {
+  const header = document.querySelector('.header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('header--scrolled', window.scrollY > 50);
+  });
+})();
+
 // Mobile nav (burger)
 (() => {
   const burger = document.getElementById('burger');
